@@ -4,6 +4,7 @@ using System;
 public class PlayerControl : MonoBehaviour
 {
 
+
 	public float speed = 5f;
     public float jumpForce = 30f; 
 
