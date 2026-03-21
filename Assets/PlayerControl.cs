@@ -51,6 +51,7 @@ public class PlayerControl : MonoBehaviour
         animator.SetFloat("xVelocity", Math.Abs(rb.linearVelocity.x));
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
     }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         isGrounded = false;
