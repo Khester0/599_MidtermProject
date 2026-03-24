@@ -55,14 +55,16 @@ public class PlayerControl : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        isGrounded = false;
+    {   
+        isGrounded = true;
         animator.SetBool("isJumping", isGrounded);
+        
+        
     }
     
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isGrounded = true;
+        isGrounded = false;
         animator.SetBool("isJumping", !isGrounded);
     }
      
