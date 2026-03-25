@@ -54,18 +54,19 @@ public class PlayerControl : MonoBehaviour
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {   
         isGrounded = true;
-        animator.SetBool("isJumping", isGrounded);
+        animator.SetBool("isJumping", !isGrounded);
         
         
     }
     
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isGrounded = false;
-        animator.SetBool("isJumping", !isGrounded);
+        
+       isGrounded = false;
+       animator.SetBool("isJumping", isGrounded);
     }
      
      
