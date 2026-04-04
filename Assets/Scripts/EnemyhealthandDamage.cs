@@ -27,11 +27,11 @@ public class EnemyhealthandDamage : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("enemy die");
+        
         animator.SetBool("IsDead", true);
 
         GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
+        this.enabled = false;   
     }
 
     
