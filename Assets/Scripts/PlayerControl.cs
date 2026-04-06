@@ -43,6 +43,7 @@ public class PlayerControl : MonoBehaviour
             Vector3 ls = transform.localScale;
             ls.x *= -1f;
             transform.localScale = ls;
+          
         }
     }
 
@@ -54,15 +55,18 @@ public class PlayerControl : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D collision)
-    {
-        isGrounded = false;
-        animator.SetBool("isJumping", isGrounded);
+    {   
+        isGrounded = true;
+        animator.SetBool("isJumping", !isGrounded);
+        
+        
     }
     
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isGrounded = true;
-        animator.SetBool("isJumping", !isGrounded);
+        
+       isGrounded = false;
+       animator.SetBool("isJumping", isGrounded);
     }
      
      
