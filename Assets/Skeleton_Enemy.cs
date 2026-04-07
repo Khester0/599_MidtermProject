@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(Rigidbody2D),typeof(TouchingDirections)) ]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(DamageTaken))]
 public class Skeleton_Enemy : MonoBehaviour
 {
 
@@ -13,6 +13,7 @@ public class Skeleton_Enemy : MonoBehaviour
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
     Animator animator;
+    DamageTaken damageTaken;
 
     public enum WalkableDirection {Right, Left};
 
@@ -63,6 +64,7 @@ public class Skeleton_Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
         animator = GetComponent<Animator>();
+        damageTaken = GetComponent<DamageTaken>();
     }
     // Update is called once per frame
     void Update()
@@ -78,10 +80,14 @@ public class Skeleton_Enemy : MonoBehaviour
             FlipDirection();
         }
 
-        if(CanMove)
-            rb.linearVelocity = new Vector2 (walkspeed * walkDirectionVector.x, rb.linearVelocity.y);
-        else
-            rb.linearVelocity = new Vector2(Mathf.Lerp(rb.linearVelocity.x, 0, walkStopRate ), rb.linearVelocity.y);
+        if(!damageTaken.LockVelocity)
+        {
+            if(CanMove)
+                rb.linearVelocity = new Vector2 (walkspeed * walkDirectionVector.x, rb.linearVelocity.y);
+            else
+                rb.linearVelocity = new Vector2(Mathf.Lerp(rb.linearVelocity.x, 0, walkStopRate ), rb.linearVelocity.y);
+        }
+        
     }
     private void FlipDirection()
     {
@@ -102,5 +108,9 @@ public class Skeleton_Enemy : MonoBehaviour
         
     }
 
+    public void OnHit(float damage, Vector2 knockback)
+    {
+        rb.linearVelocity = new Vector2(knockback.x, rb.linearVelocity.y + knockback.y);
+    }
     
 }
