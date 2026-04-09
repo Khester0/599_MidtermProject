@@ -38,6 +38,7 @@ Transform:
   m_Children:
   - {fileID: 4356979143237305393}
   - {fileID: 8355250204313530920}
+  - {fileID: 4764311705895865888}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1704905874983464935
@@ -174,6 +175,7 @@ MonoBehaviour:
   walkspeed: 3
   walkStopRate: 0.5
   attackZone: {fileID: 2860478383326918737}
+  cliffDetection: {fileID: 6425630439047019889}
   _hasTarget: 0
 --- !u!114 &3310012454337202056
 MonoBehaviour:
@@ -347,6 +349,98 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectedColliders: []
+--- !u!1 &7997600775442116460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4764311705895865888}
+  - component: {fileID: 6425630439047019889}
+  - component: {fileID: 990391008343979436}
+  m_Layer: 11
+  m_Name: CliffDetectionZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4764311705895865888
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997600775442116460}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3353166816929219127}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6425630439047019889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997600775442116460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a53e8fc0f150bc43adb19b6603beb45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectedColliders: []
+--- !u!61 &990391008343979436
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997600775442116460}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 1.49, y: -2.42}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.07, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &8001718871592469507
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +468,7 @@ Transform:
   m_GameObject: {fileID: 8001718871592469507}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4, y: 0, z: 0}
+  m_LocalPosition: {x: 2.33, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -426,17 +520,20 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.95667815, y: 0.04936561}
-      - {x: 1.0741756, y: 0.37850672}
-      - {x: 1.4147176, y: 1.2027282}
-      - {x: 1.4039283, y: 2.0742106}
+    - - {x: 0.79233426, y: 0.10876209}
+      - {x: 1.2833401, y: 0.34880894}
+      - {x: 1.6534187, y: 0.6621338}
+      - {x: 1.8204585, y: 1.6990585}
+      - {x: 1.5085105, y: 2.1336074}
       - {x: 1.0625765, y: 2.740421}
       - {x: 0.60575795, y: 2.870923}
-      - {x: 0.5728017, y: 2.674355}
-      - {x: 0.33989406, y: 1.6094923}
-      - {x: -0.1740827, y: 0.6074635}
-      - {x: -0.70808125, y: -0.26272506}
-      - {x: 0.39794463, y: -0.54029405}
+      - {x: -1.0189503, y: 2.6123137}
+      - {x: -0.5266434, y: 1.9510247}
+      - {x: -0.31539857, y: 1.1299765}
+      - {x: -0.575969, y: 0.8616777}
+      - {x: -0.85314643, y: 0.56758076}
+      - {x: -1.1846592, y: 0.46118635}
+      - {x: -0.06520522, y: 0.13350347}
   m_UseDelaunayMesh: 0
 --- !u!114 &6290139182435393557
 MonoBehaviour:

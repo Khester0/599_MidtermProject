@@ -9,6 +9,7 @@ public class Skeleton_Enemy : MonoBehaviour
     public float walkspeed = 3f;
     public float walkStopRate = 0.5f;
     public DetectionZone attackZone;
+    public DetectionZone cliffDetection;
 
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
@@ -59,6 +60,19 @@ public class Skeleton_Enemy : MonoBehaviour
                 return animator.GetBool("canMove");
             }
         }
+
+    public float AttackCooldown 
+    {
+        get
+        {
+            return animator.GetFloat("attackCoolDown");   
+
+        }
+        private set
+        {
+            animator.SetFloat("attackCoolDown", Mathf.Max(value, 0));
+        }
+    }
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -70,12 +84,17 @@ public class Skeleton_Enemy : MonoBehaviour
     void Update()
     {
         HasTarget = attackZone.detectedColliders.Count > 0;
+
+        if(AttackCooldown > 0)
+        {
+            AttackCooldown -= Time.deltaTime;
+        }
         
     }
 
     private void FixedUpdate()
     {
-        if(touchingDirections.IsOnWall && touchingDirections.IsGrounded)
+        if(touchingDirections.IsOnWall && touchingDirections.IsGrounded || cliffDetection.detectedColliders.Count == 0)
         {
             FlipDirection();
         }
