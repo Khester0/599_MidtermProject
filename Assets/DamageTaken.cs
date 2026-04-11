@@ -5,6 +5,7 @@ public class DamageTaken : MonoBehaviour
 {
     Animator animator;
     public UnityEvent<float, Vector2> damageableHit; 
+    public UnityEvent<float, float> healthChanged; 
 
     [SerializeField]
     private float _maxHealth = 100; 
@@ -33,6 +34,7 @@ public class DamageTaken : MonoBehaviour
         set
         {
             _health = value;
+            healthChanged?.Invoke(_health, MaxHealth);
 
             if(_health <= 0)
             {
@@ -97,6 +99,21 @@ public class DamageTaken : MonoBehaviour
         }
 
         return false;
+    }
+
+    public bool Heal(float healthRestore)
+    {
+        if(IsAlive && Health < MaxHealth)
+        {
+            float maxHeal = Mathf.Max(MaxHealth - Health, 0);
+            float actualHeal = Mathf.Min(maxHeal, healthRestore);
+            Health += actualHeal;
+            CharacterEvents.characterHealed(gameObject, actualHeal);
+            return true;
+        }
+         
+        return false;
+
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
