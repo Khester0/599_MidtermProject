@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 277048179073577496}
   - component: {fileID: 6145817653360047024}
   - component: {fileID: 6305360780316733666}
+  - component: {fileID: 7876881769609760238}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -520,7 +521,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1504864917
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: -4753702385071775785, guid: 63e1d926954591148b82d2bee5b0ee5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -574,7 +575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkspeed: 5
   runspeed: 10
-  airspeed: 5
+  airspeed: 7
   jumpImpulse: 15
   _isMoving: 0
   _isRunning: 0
@@ -846,6 +847,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  healthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  spikeDamage: 5
+  playerBounce: 5
   _maxHealth: 100
   _health: 100
   _isAlive: 1
+--- !u!114 &7876881769609760238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930793872450463889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc94ddb40ebc28943a990d5ec994855f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spikeDamage: 5

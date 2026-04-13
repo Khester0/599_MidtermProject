@@ -4,8 +4,14 @@ using UnityEngine.Events;
 public class DamageTaken : MonoBehaviour
 {
     Animator animator;
+    Rigidbody2D rb;
+    
     public UnityEvent<float, Vector2> damageableHit; 
-    public UnityEvent<float, float> healthChanged; 
+    public UnityEvent<float, float> healthChanged;
+    
+
+    public float spikeDamage = 5;
+    public float playerBounce = 5f;
 
     [SerializeField]
     private float _maxHealth = 100; 
@@ -74,17 +80,24 @@ public class DamageTaken : MonoBehaviour
         
     }
 
+    
     private bool isInvincible = false;
     private float timeSinceHit = 0;
     private float invinsibilityTime = 0.25f;
 
     private void Awake()
     {
+        
         animator = GetComponent<Animator>();
+        
+        
+        
     }
 
-    public bool Hit(float damage, Vector2 knockback)
+    public bool Hit(float damage, Vector2 knockback )
     {
+       
+
         if(IsAlive && !isInvincible)
         {
             Health -= damage;
@@ -134,8 +147,7 @@ public class DamageTaken : MonoBehaviour
             
             timeSinceHit += Time.deltaTime;
         }
-
-        
-        
     }
+
+   
 }
