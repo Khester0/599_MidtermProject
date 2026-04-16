@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
@@ -55,6 +56,12 @@ TagManager:
     locked: 0
   - name: 1
     uniqueID: 1786291469
+    locked: 0
+  - name: BackGround
+    uniqueID: 2854383959
+    locked: 0
+  - name: Ground
+    uniqueID: 1904671665
     locked: 0
   - name: Player
     uniqueID: 2790102379
